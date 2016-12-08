@@ -34,7 +34,9 @@ AyncRead will keep reading from the pipe and write it back to StdDataChannel. Do
   
  Example
 ```bash
-go get -u github.com/yaronsumel/pipe/pipe-example 
+go get -u github.com/yaronsumel/pipe/pipe-example
+```
+```bash
 pipe-example --write | pipe-example
 ```
       
