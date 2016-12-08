@@ -1,21 +1,23 @@
 package pipe
 
 import (
-	"os"
 	"bufio"
-	"io"
 	"errors"
+	"io"
+	"os"
 )
 
 // used here to prevent os package import
 var (
-	Stdin = os.Stdin
+	Stdin  = os.Stdin
 	Stdout = os.Stdout
 	Stderr = os.Stderr
 )
 
-// StdData used for as async communication channel
+// StdDataChannel used for as async communication channel
 type StdDataChannel chan StdData
+
+// StdData is used as channel structure
 type StdData struct {
 	Data []byte
 	Err  error
@@ -64,7 +66,7 @@ func Read(pipe io.Reader, bufSize int) ([]byte, error) {
 func AsyncRead(pipe io.Reader, bufSize int, stdDataChan chan StdData) {
 	if !isNamedPipe() {
 		stdDataChan <- StdData{
-			Err:errors.New("Not Valid Named Pipe"),
+			Err: errors.New("Not Valid Named Pipe"),
 		}
 	}
 	r := bufio.NewReader(pipe)
