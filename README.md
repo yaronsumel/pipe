@@ -2,7 +2,7 @@
 small utility for handling with stdin/stdout/stderr unix pipes
 
  Installation
-```
+```bash
 go get -u github.com/yaronsumel/pipe
 ```
       
