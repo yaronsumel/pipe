@@ -1,5 +1,5 @@
 # pipe [![Go Report Card](https://goreportcard.com/badge/github.com/yaronsumel/pipe)](https://goreportcard.com/report/github.com/yaronsumel/pipe)  [![GoDoc](https://godoc.org/github.com/yaronsumel/pipe?status.svg)](https://godoc.org/github.com/yaronsumel/pipe)
-small utility for handling with stdin/stdout/stderr unix pipes
+small package for reading pipe data
 
  Installation
 ```bash
