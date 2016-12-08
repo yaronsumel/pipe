@@ -1,13 +1,14 @@
 package main
 
 import (
-	"github.com/yaronsumel/pipe"
-	"fmt"
 	"flag"
+	"fmt"
+	"github.com/yaronsumel/pipe"
+	"io"
 	"os"
 	"time"
-	"io"
 )
+
 // go get github.com/yaronsumel/pipe/example
 // pipe-example --write | pipe-example
 // small example to demonstrate code and pipe usage
