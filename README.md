@@ -8,7 +8,7 @@ go get -u github.com/yaronsumel/pipe
       
  Sync Usage
 Read is Sync Action to get all pipe data fits in the predifened size
-```
+```go
 	data,err := pipe.Read(pipe.Stdin,1024)
 	if err!=nil{
 		//do something with the error
@@ -18,7 +18,7 @@ Read is Sync Action to get all pipe data fits in the predifened size
       
  Async Usage
 AyncRead will keep reading from the pipe and write it back to StdDataChannel. Don't forget to handle the errors.
-```
+```go
 	StdinChannel := make(pipe.StdDataChannel)
 	go pipe.AsyncRead(pipe.Stdin, 1024, StdinChannel)
 	for {
