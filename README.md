@@ -1,4 +1,4 @@
-# pipe
+# pipe [![Go Report Card](https://goreportcard.com/badge/github.com/yaronsumel/pipe)](https://goreportcard.com/report/github.com/yaronsumel/pipe)
 small utility for handling with stdin/stdout/stderr unix pipes
 
  Installation
