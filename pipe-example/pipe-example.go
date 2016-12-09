@@ -23,7 +23,6 @@ func main() {
 		select {
 		case stdin := <-StdinChannel:
 			if stdin.Err != nil {
-				fmt.Println(stdin.Err)
 				if stdin.Err == io.EOF {
 					fmt.Printf("stdin-> EOF \r\n")
 					os.Exit(1)

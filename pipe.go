@@ -9,7 +9,7 @@ import (
 
 // used here to prevent os package import
 var (
-	Stdin = os.Stdin
+	Stdin  = os.Stdin
 	Stdout = os.Stdout
 	Stderr = os.Stderr
 )
