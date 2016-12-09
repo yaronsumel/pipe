@@ -17,13 +17,15 @@ func main() {
 	flag.Parse()
 	if *writeMode {
 		writeData()
+		return
 	}
 	StdinChannel := make(pipe.StdDataChannel)
-	go pipe.AsyncRead(pipe.Stdin, 1024, StdinChannel)
+	go pipe.AsyncRead(pipe.Stdin, 1024*128, StdinChannel)
 	for {
 		select {
 		case stdin := <-StdinChannel:
 			if stdin.Err != nil {
+				fmt.Println(stdin.Err)
 				if stdin.Err == io.EOF {
 					fmt.Printf("stdin-> EOF \r\n")
 					os.Exit(1)
@@ -38,8 +40,8 @@ func main() {
 // writeData is a simple loop writing every second to stdout
 func writeData() {
 	for k := 0; k < 5; k++ {
-		os.Stdout.Write([]byte("[example-writer] stdout:" + time.Now().String()))
+		os.Stdout.Write([]byte(""))
 		time.Sleep(time.Second * 1)
 	}
-	os.Exit(0)
+	os.Exit(1)
 }

@@ -9,7 +9,7 @@ import (
 
 // used here to prevent os package import
 var (
-	Stdin  = os.Stdin
+	Stdin = os.Stdin
 	Stdout = os.Stdout
 	Stderr = os.Stderr
 )
@@ -40,16 +40,11 @@ func readChunk(r io.Reader, size int) ([]byte, error) {
 	if err != nil {
 		return []byte{}, err
 	}
+	// fallback for EOF
 	if n == 0 {
-		if err == nil {
-			return []byte{}, err
-		}
-		if err == io.EOF {
-			return []byte{}, err
-		}
+		return []byte{}, io.EOF
 	}
-	buf = buf[:n]
-	return buf, nil
+	return buf[:n], nil
 }
 
 // Read reads from io.reader one chunk as defined as bufSize
