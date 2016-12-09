@@ -9,8 +9,6 @@ import (
 	"time"
 )
 
-// go get github.com/yaronsumel/pipe/example
-// pipe-example --write | pipe-example
 // small example to demonstrate code and pipe usage
 func main() {
 	var writeMode = flag.Bool("write", false, "write some demo data to stdout")
@@ -20,7 +18,7 @@ func main() {
 		return
 	}
 	StdinChannel := make(pipe.StdDataChannel)
-	go pipe.AsyncRead(pipe.Stdin, 1024*128, StdinChannel)
+	go pipe.AsyncRead(pipe.Stdin, 1024, StdinChannel)
 	for {
 		select {
 		case stdin := <-StdinChannel:
@@ -40,8 +38,8 @@ func main() {
 // writeData is a simple loop writing every second to stdout
 func writeData() {
 	for k := 0; k < 5; k++ {
-		os.Stdout.Write([]byte(""))
+		os.Stdout.Write([]byte("[example-writer] stdout:" + time.Now().String()))
 		time.Sleep(time.Second * 1)
 	}
-	os.Exit(1)
+	os.Exit(0)
 }
