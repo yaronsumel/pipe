@@ -23,8 +23,8 @@ type StdData struct {
 	Err  error
 }
 
-// isNamedPipe checks whether valid pipe used
-func isNamedPipe() bool {
+// IsNamedPipe checks whether valid pipe used
+func IsNamedPipe() bool {
 	fileInfo, err := os.Stdin.Stat()
 	if err != nil {
 		return false
@@ -49,7 +49,7 @@ func readChunk(r io.Reader, size int) ([]byte, error) {
 
 // Read reads from io.reader one chunk as defined as bufSize
 func Read(pipe io.Reader, bufSize int) ([]byte, error) {
-	if !isNamedPipe() {
+	if !IsNamedPipe() {
 		return []byte{}, errors.New("Not Valid Named Pipe")
 	}
 	return readChunk(bufio.NewReader(pipe), bufSize)
@@ -59,7 +59,7 @@ func Read(pipe io.Reader, bufSize int) ([]byte, error) {
 // return data in stdData structure
 // use in only with routine - ie go AsyncRead
 func AsyncRead(pipe io.Reader, bufSize int, stdDataChan chan StdData) {
-	if !isNamedPipe() {
+	if !IsNamedPipe() {
 		stdDataChan <- StdData{
 			Err: errors.New("Not Valid Named Pipe"),
 		}
